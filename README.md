@@ -1,5 +1,5 @@
 # Rating App
-Building a simple rating website with AWS sreverless technologies
+Building a simple rating website with AWS serverless technologies
 
 My approach is to upload all the static contents for the website on a S3 bucket.
 This would include, html pages, css and javascripts.
