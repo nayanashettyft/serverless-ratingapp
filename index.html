@@ -99,5 +99,18 @@
 </div>
 
 <a href=ratings.html> View ratings here </a>
+
+<script>
+function displayResult(rating) {
+    ret = pushRatingToBackend(rating);
+    if (ret == 1){
+        document.getElementById("thankYouMsg").style.color = "green";
+        document.getElementById("thankYouMsg").innerHTML = "Thank you for providing your feedback!";
+    }
+}
+function pushRatingToBackend(rating){
+  return 1;
+}
+</script>
 </body>
 </html>
