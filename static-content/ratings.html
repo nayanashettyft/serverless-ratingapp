@@ -3,6 +3,21 @@
 <style>html{background-color:#fff1e5;}</style>
 <link rel="stylesheet" href="https://www.ft.com/__origami/service/build/v2/bundles/css?modules=o-header" />
 </head>
+<script>
+
+function getFunction() {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("loading").innerHTML = this.responseText;
+        }
+    };
+    xhttp.open("GET", "https://nspnjacpvf.execute-api.eu-west-1.amazonaws.com/prod/readDynamoDB", true);
+    xhttp.send();
+
+}
+
+</script>
 <body>
 <header class="o-header" data-o-component="o-header" data-o-header--no-js="">
 
@@ -84,6 +99,7 @@
 
 <h1>Here's the rating</h1>
 <p id='loading'><em>Loading rating...</em></p>
+<button onclick="getFunction()">Show ratings</button><br>
 <table />
 
 <a href=index.html> Home </a>

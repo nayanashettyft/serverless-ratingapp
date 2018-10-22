@@ -89,42 +89,41 @@
         </nav>
     </div>
 </div>
+
+<form id="feedback-form" method="post">
 <p>We at the FT value your feedback.Please share your rating for the site</p>
 
 <h2 style="text-align:center;" id="thankYouMsg">Please click one of them</h2>
-<div style="text-align:center;">
-    <button onclick="displayResult(0)"><img src="happy.png" alt="happy" style="width:42px;height:42px;border:0"></button>
-    <button onclick="displayResult(1)"><img src="ok.png" alt="ok" style="width:42px;height:42px;border:0"></button>
-    <button onclick="displayResult(2)"><img src="sad.png" alt="sad" style="width:42px;height:42px;border:0"></button>
-</div>
+<fieldset>
+    <legend>Choose your feedback</legend>
+    <input type="image" id="happy" alt="happy"
+           src="happy.png" style="width:42px;height:42px;border:0" />
+    <input type="image" id="ok" alt="ok"
+           src="ok.png" style="width:42px;height:42px;border:0" />
+     <input type="image" id="sad" alt="sad"
+           src="sad.png" style="width:42px;height:42px;border:0" />
+</fieldset>
+    <button type="button" onClick="displayResult(event)" class="btn btn-lg" style="margin-top:20px;">Submit</button>
 
 <a href=ratings.html> View ratings here </a>
+</form>
 
 <script>
-function displayResult(rating) {
-    ret = pushRatingToBackend(rating);
-    if (ret == 1){
-        document.getElementById("thankYouMsg").style.color = "green";
-        document.getElementById("thankYouMsg").innerHTML = "Thank you for providing your feedback!";
-    }
-}
-function pushRatingToBackend(rating){
-  var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-        document.getElementById("my-demo").innerHTML = this.responseText;
-        }
-    };
-    xhttp.open("GET", "https://nspnjacpvf.execute-api.eu-west-1.amazonaws.com/prod/readDynamoDB", true);
-    xhttp.send();
-}
-function sendToBackend(rating){
-    e.preventDefault();
+function displayResult(event){
+    event.preventDefault();
     var URL = "https://nspnjacpvf.execute-api.eu-west-1.amazonaws.com/prod/readDynamoDB";
+    if ($("#happy").val()){
+        var rating = $("#happy").val();
+    }
+    if ($("#ok").val()){
+        var rating = $("#ok").val();
+    }
+    if ($("#sad").val()){
+        var rating = $("#sad").val();
+    }
 
-    var data = $rating;
     var data = {
-        rating : $rating
+        rating : rating
     };
 
     $.ajax({

@@ -1,0 +1,12 @@
+import boto3
+
+
+def lambda_handler(event, context):
+    dynamodb = boto3.resource('dynamodb')
+    table = dynamodb.Table('demo-table')
+    print(table.creation_date_time)
+    response = table.scan()
+    print(response)
+    item = response['Items']
+    print("Items")
+    print(item)
